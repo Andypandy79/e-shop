@@ -9,7 +9,9 @@ const ProductCard = ({ product }: { product: Product }) => {
   return (
     <Card className='w-full max-w-sm'>
       <CardHeader className='p-0 items-center'>
-        <Link href={`/product/${product.slug}`}>
+        <Link
+          href={`/product/${product.slug}`}
+          className='flex justify-center'>
           <Image
             src={product.images[0]}
             alt={product.name}
