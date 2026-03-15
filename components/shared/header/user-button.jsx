@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { auth } from '@/auth';
-import { signOutUser } from '@/lib/actions/user-action';
+import { signOutUser } from '@/lib/actions/user.action';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -31,9 +31,7 @@ const UserButton = async () => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <div className='flex items-center'>
-            <Button
-              variant='ghost'
-              className='relative w-8 h-8 rounded-full ml-2 flex items-center justify-center bg-gray-200 cursor-pointer'>
+            <Button className='relative w-8 h-8 rounded-full ml-2 flex items-center justify-center  bg-yellow-400 cursor-pointer hover:bg-yellow-300'>
               {firstInitial}
             </Button>
           </div>
