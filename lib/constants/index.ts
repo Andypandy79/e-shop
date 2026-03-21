@@ -7,7 +7,7 @@ export const SERVER_URL =
 export const LATEST_PRODUCTS_LIMIT =
   Number(process.env.LATEST_PRODUCTS_LIMIT) || 4;
 
-  export const signInDefaultValues = {
+export const signInDefaultValues = {
   email: 'admin@example.com',
   password: '123456',
 };
@@ -17,4 +17,12 @@ export const signUpDefaultValues = {
   email: '',
   password: '',
   confirmPassword: '',
+};
+
+export const shippingAddressDefaultValues = {
+  fullName: 'John Doe',
+  streetAddress: '123 Main st',
+  city: 'Anytown',
+  postalCode: '12345',
+  country: 'USA',
 };
