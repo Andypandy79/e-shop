@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { formatNumberWithDecimal, formatCurrency } from '@/lib/utils';
+import { formatCurrency } from '@/lib/utils';
 
 function AddButton({ item }: { item: CartItem }) {
   const [isPending, startTransition] = useTransition();
@@ -114,9 +114,7 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
                       <span>{item.qty}</span>
                       <AddButton item={item} />
                     </TableCell>
-                    <TableCell className='text-right'>
-                      {formatNumberWithDecimal(Number(item.price))}
-                    </TableCell>
+                    <TableCell className='text-right'>{item.price}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

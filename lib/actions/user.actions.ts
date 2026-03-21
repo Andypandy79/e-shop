@@ -4,6 +4,7 @@ import {
   signInFormSchema,
   signUpFormSchema,
   shippingAddressSchema,
+  paymentMethodSchema,
 } from '../validators';
 import { auth, signIn, signOut } from '@/auth';
 import { isRedirectError } from 'next/dist/client/components/redirect-error';
@@ -11,6 +12,8 @@ import { hashSync } from 'bcrypt-ts-edge';
 import { prisma } from '@/db/prisma';
 import { ShippingAddress } from '@/types';
 import { formatError } from '../utils';
+import { z } from 'zod';
+// import { cookies } from 'next/headers';
 
 // Sign in the user with credentials
 export async function signInWithCredentials(
@@ -36,6 +39,13 @@ export async function signInWithCredentials(
 
 // Sign user out
 export async function signOutUser() {
+  // Check for cart cookie
+  // const sessionCartId = (await cookies()).get('sessionCartId')?.value;
+  // if (!sessionCartId) throw new Error('Cart session not found');
+
+  // Delete cookies session card id
+  // deleteSessionCartId();
+
   await signOut();
 }
 
@@ -110,3 +120,38 @@ export async function updateUserAddress(data: ShippingAddress) {
     return { success: false, message: formatError(error) };
   }
 }
+
+// Update user's payment method
+export async function updateUserPaymentMethod(
+  data: z.infer<typeof paymentMethodSchema>,
+) {
+  try {
+    const session = await auth();
+    const currentUser = await prisma.user.findFirst({
+      where: { id: session?.user?.id },
+    });
+
+    if (!currentUser) throw new Error('User not found');
+
+    const paymentMethod = paymentMethodSchema.parse(data);
+
+    await prisma.user.update({
+      where: { id: currentUser.id },
+      data: { paymentMethod: paymentMethod.type },
+    });
+
+    return {
+      success: true,
+      message: 'User updated successfully',
+    };
+  } catch (error) {
+    return { success: false, message: formatError(error) };
+  }
+}
+
+// Delete sesion cart id cookies
+// const deleteSessionCartId = async function Page() {
+//   const cookieStore = await cookies();
+//   cookieStore.delete('sessionCartId');
+//   return;
+// };
