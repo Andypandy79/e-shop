@@ -106,7 +106,9 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
                           width={50}
                           height={50}
                         />
-                        <span className='px-2'>{item.name}</span>
+                        <span className='hidden sm:block px-2'>
+                          {item.name}
+                        </span>
                       </Link>
                     </TableCell>
                     <TableCell className='flex-center gap-2'>
@@ -121,7 +123,7 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
             </Table>
           </div>
 
-          <Card>
+          <Card className='mt-2 md:mt-0'>
             <CardContent className='p-4 gap-4'>
               <div className='pb-3 text-xl'>
                 Subtotal ({cart.items.reduce((a, c) => a + c.qty, 0)}) :
@@ -140,7 +142,7 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
                 ) : (
                   <ArrowRight className='w-4 h-4' />
                 )}{' '}
-                Proceed to Checkout
+                Checkout
               </Button>
             </CardContent>
           </Card>

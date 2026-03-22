@@ -35,7 +35,7 @@ const OrderDetailsTable = ({ order }: { order: Order }) => {
     <>
       <h1 className='py-4 text-2xl'>Order {formatId(id)}</h1>
       <div className='grid md:grid-cols-3 md:gap-5'>
-        <div className='col-span-2 space-4-y overlow-x-auto'>
+        <div className='md:col-span-2 overflow-x-auto space-y-4'>
           <Card>
             <CardContent className='p-4 gap-4'>
               <h2 className='text-xl pb-4'>Payment Method</h2>
@@ -49,7 +49,7 @@ const OrderDetailsTable = ({ order }: { order: Order }) => {
               )}
             </CardContent>
           </Card>
-          <Card className='my-2'>
+          <Card>
             <CardContent className='p-4 gap-4'>
               <h2 className='text-xl pb-4'>Shipping Address</h2>
               <p>{shippingAddress.fullName}</p>
@@ -90,7 +90,9 @@ const OrderDetailsTable = ({ order }: { order: Order }) => {
                             width={50}
                             height={50}
                           />
-                          <span className='px-2'>{item.name}</span>
+                          <span className='hidden md:block px-2'>
+                            {item.name}
+                          </span>
                         </Link>
                       </TableCell>
                       <TableCell>
@@ -106,11 +108,11 @@ const OrderDetailsTable = ({ order }: { order: Order }) => {
             </CardContent>
           </Card>
         </div>
-        <div>
+        <div className='mt-4 md:mt-0'>
           <Card>
             <CardContent className='p-4 gap-4 space-y-4'>
               <div className='flex justify-between'>
-                <div>Items</div>
+                <div>Item</div>
                 <div>{formatCurrency(itemsPrice)}</div>
               </div>
               <div className='flex justify-between'>

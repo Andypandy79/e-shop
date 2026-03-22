@@ -97,7 +97,9 @@ const PlaceOrderPage = async () => {
                             width={50}
                             height={50}
                           />
-                          <span className='px-2'>{item.name}</span>
+                          <span className='hidden sm:block px-2'>
+                            {item.name}
+                          </span>
                         </Link>
                       </TableCell>
                       <TableCell>
@@ -113,7 +115,7 @@ const PlaceOrderPage = async () => {
             </CardContent>
           </Card>
         </div>
-        <div>
+        <div className='mt-4 md:mt-0'>
           <Card>
             <CardContent className='p-4 gap-4 space-y-4'>
               <div className='flex justify-between'>
@@ -132,7 +134,7 @@ const PlaceOrderPage = async () => {
                 <div>Total</div>
                 <div>{formatCurrency(cart.totalPrice)}</div>
               </div>
-              <PlaceOrderForm/>
+              <PlaceOrderForm />
             </CardContent>
           </Card>
         </div>
